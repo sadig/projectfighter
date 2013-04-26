@@ -1,0 +1,25 @@
+<%- content_for :navbar do %>
+  <%= render :partial => 'includes/layout_navbar' %>
+<%- end %>
+<%- content_for :jscript do %>
+  <%= javascript_include_tag controller_path %>
+<%- end %>
+<div class="container">
+  <div class="row">
+    <div class="span9" id="<%= '%{path}_%{action}' % {:path=>controller_path.sub(/\//,'_'),:action=>action_name} %>">
+      <table class="table table-bordered table-striped table-hover table-condensed">
+        <thead>
+          <tr><th>Name</th><th>E-Mail</th><th>Created At</th></tr>
+        </thead>
+        <tbody>
+          <%- for user in @users %>
+            <tr data-edit-url="<%= url_for :controller => 'users' , :action => 'edit', :id => user %>">
+              <td data-cell="true"><%= user.name %></td>
+              <td data-cell="true"><%= user.email %></td>
+              <td data-cell="true"><%= user.created_at %></td>
+            </tr>
+          <%- end %>
+      </table>
+    </div>
+  </div>
+</div>
