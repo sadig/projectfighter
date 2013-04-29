@@ -8,8 +8,10 @@
       </a>
       <%= link_to 'Projects', root_url, :class=>'brand'%>
       <div class="container nav-collapse">
-      	<ul class="nav">
-      		<LI><a href="#">Whatever</a></LI>
+        <ul class="nav">
+          <%- if can? :read, Project %>
+            <LI><%= link_to 'Projects', projects_path %></LI>
+          <%- end %>
       	</ul>
         <ul class="nav pull-right">
 			<%- if not user_signed_in? %>

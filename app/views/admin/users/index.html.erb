@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <%- for user in @users %>
-            <tr data-edit-url="<%= url_for :controller => 'users' , :action => 'edit', :id => user %>">
+            <tr class="<%- if user.deactivated %>error<%-end%>" data-edit-url="<%= url_for :controller => 'users' , :action => 'edit', :id => user %>">
               <td data-cell="true"><%= user.name %></td>
               <td data-cell="true"><%= user.email %></td>
               <td data-cell="true"><%= user.created_at %></td>

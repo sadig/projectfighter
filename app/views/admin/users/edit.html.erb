@@ -1,12 +1,12 @@
 <%- content_for :navbar do %>
   <%= render :partial => 'includes/layout_navbar' %>
 <%- end %>
-<div class="row">
-  <div class="span9 page-header">
-    <h2>Edit <%= @user.name %><button class="btn btn-primary pull-right">Edit</button></h2>
-  </div>
-</div>
 <%= form_for @user, :url => { :action =>"update" } do |f| %>
+  <div class="row">
+    <div class="span9 page-header">
+      <h2>Edit <%= @user.name %></h2>
+    </div>
+  </div>
   <div class="control-group">
     <%= f.label :name, 'Name', :class=>'control-label' %>
     <div class="controls">
@@ -17,6 +17,24 @@
     <%= f.label :email, 'E-Mail', :class=>'control-label'%>
     <div class="controls">
       <%= f.text_field :email, :placeholder => 'E-Mail', :class=>'span6'%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :roles, 'Roles', :class=>'control-label' %>
+    <div class="controls">
+      <%= f.collection_select(:roles_for_select, @roles, :id, :role, {}, {:class=>'span6',:multiple=>true}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :deativated, 'Deactivate?',:class=>'control-label' %>
+    <%= f.check_box :deactivated %>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <div class="pull-right">
+        <%= link_to 'Cancel', admin_users_path, :class=>'btn' %>
+        <%= f.button 'Save', :type=>'submit', :class=>'btn btn-primary btn-default'%>
+      </div>
     </div>
   </div>
 <%- end %>
