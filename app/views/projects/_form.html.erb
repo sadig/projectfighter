@@ -1,0 +1,25 @@
+        <div class="control-group">
+          <%= f.label :slug, 'Slug', :class=>'control-label' %>
+          <div class="controls">
+            <%= f.text_field :slug, :placeholder=>'Slug', :class=>'span3' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :title, 'Title', :class=>'control-label' %>
+          <div class="controls">
+            <%= f.text_field :title, :placeholder=>'Title', :class=>'span5' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :description, 'Description', :class=>'control-label'%>
+          <div class="controls">
+            <%= f.text_area :description, :class=>'span5', :placeholder=>'Description', :rows=>5, :cols=>78 %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls pull-right">
+            <%= link_to 'Cancel', projects_path, :class=>'btn btn-cancel' %>
+            <%= f.button 'Create', :class=>'btn btn-primary btn-default', :type=>'submit' %>
+          </div>
+        </div>
+ 

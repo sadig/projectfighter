@@ -34,10 +34,15 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.name %> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <%- if can? :manage, :all %>
-              <li class="nav-header">Administration</li>
-              <li><%= link_to 'Users', admin_users_path %></a></li>
-              <li class="divider"></li>
+                <li class="nav-header">Administration</li>
+                <li><%= link_to 'Users', admin_users_path %></li>
+                <li class="divider"></li>
               <%- end %>
+              <%- if can? :create, Project %>
+                <li class="nav-header">Actions</li>
+                <li><%= link_to 'Create Project', new_project_path %></LI>
+              <%- end %>
+              <li class="divider"></li>
               <li><a href="#">Settings</a></li>
               <li class="divider"></li>
               <li><%= link_to 'Sign Out', destroy_user_session_path, :method=>'delete' %></LI>

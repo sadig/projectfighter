@@ -1,0 +1,21 @@
+<%- content_for :navbar do %>
+  <%= render :partial => 'includes/layout_navbar' %>
+<%- end %>
+<%- content_for :jscript do %>
+  <%= javascript_include_tag controller_path %>
+<%- end %>
+<div class="container">
+  <div class="row">
+    <div class="page-header span9">
+      <h2><%= @project.title %></h2>
+      <small>Created At:&nbsp;<span class="date_convert_to_local"><%= @project.created_at.to_datetime.iso8601%></span></small>
+
+    </div>
+    <div class="span9">
+      <h3>Tasks</h3>
+      <%- for task in @project.tasks %>
+        <%= task.title %>
+      <%- end %>
+    </div>
+  </div>
+</div>

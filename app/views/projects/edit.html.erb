@@ -1,0 +1,20 @@
+<%- content_for :navbar do %>
+  <%= render :partial => 'includes/layout_navbar' %>
+<%- end %>
+<%- content_for :jscript do %>
+  <%= javascript_include_tag controller_path %>
+<%- end %>
+<div class="container">
+  <div class="row">
+    <div class="span9 page-header">
+      <h2>New Project</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <%= form_for @project, :url => {:action=>'update'} do |f| %>
+        <%= render :partial=>'form', :locals => { :f => f} %>
+      <%- end %>
+    </div>
+  </div>
+</div>

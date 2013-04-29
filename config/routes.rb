@@ -7,5 +7,7 @@ ProjectFighter::Application.routes.draw do
   namespace :admin do
     resources :users
   end
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 end
