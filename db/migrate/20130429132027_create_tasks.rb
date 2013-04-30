@@ -3,6 +3,7 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :title
       t.text :description
+      t.string :status, :default=>'new'
       t.references :project
       t.timestamps
     end

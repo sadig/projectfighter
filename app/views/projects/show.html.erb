@@ -12,10 +12,18 @@
 
     </div>
     <div class="span9">
-      <h3>Tasks</h3>
-      <%- for task in @project.tasks %>
-        <%= task.title %>
-      <%- end %>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tasks_in_progress" data-toggle="tab">In Progress</a></li>
+        <LI><a href="#tasks_in_new" data-toggle="tab">New</a></LI>
+        <LI><a href="#tasks_in_done" data-toggle="tab">Done</a></LI>
+      </UL>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tasks_in_progress"></div>
+        <div class="tab-pane" id="tasks_in_new">
+          <%= render :partial => 'tasks_in_new' %>
+        </div>
+        <div class="tab-pane" id="tasks_in_done"></div>
+      </div>
     </div>
   </div>
 </div>

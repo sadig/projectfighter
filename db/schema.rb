@@ -51,9 +51,10 @@ ActiveRecord::Schema.define(:version => 20130429132027) do
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.string   "status",                   :default => "new"
     t.integer  "project_id",  :limit => 8
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"

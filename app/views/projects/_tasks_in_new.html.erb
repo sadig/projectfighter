@@ -1,0 +1,17 @@
+          <div class="accordion" id="accordion_tasks_new">
+            <%- for task in @project.tasks.where(:status=>"new").all %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_tasks_new" href="#<%= task.title.sub(/\s/,'_') %>">
+                    <%= task.title %>
+                  </a>
+                </div>
+                <div class="accordion-body collapse" id="<%= task.title.sub(/\s/,'_') %>">
+                  <div class="accordion-inner">
+                    <%= task.description %>
+                  </div>
+                </div>
+              </div>
+            <%- end %>
+          </div>
+ 
