@@ -1,5 +1,5 @@
           <div class="accordion" id="accordion_tasks_new">
-            <%- for task in @project.tasks.where(:status=>"new").all %>
+            <%- for task in @project.tasks.where(:status=>"done").all %>
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_tasks_new" href="#<%= task.title.sub(/\s/,'_') %>">

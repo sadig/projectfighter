@@ -16,5 +16,6 @@ if User.count <= 0 and Role.count <= 0
   project=Project.create({slug: 'test_project', title: 'First test Project for testuser', description:'testing foo', owner: user3})
   task1=Task.create({title:'Task 1',description:'This is a test task for test project', :project=>project})
   task2=Task.create({title:'Task 2',description:'This is a test task for test project', :project=>project})
+  task3=Task.create({title:'Task 3',description:'This is a test task for test project', :status=>'in_progress', :project=>project})
 
 end

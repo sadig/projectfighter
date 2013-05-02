@@ -8,6 +8,10 @@ ProjectFighter::Application.routes.draw do
     resources :users
   end
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      member do
+        put :update_status
+      end
+    end
   end
 end
