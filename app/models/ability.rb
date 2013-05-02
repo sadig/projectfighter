@@ -13,7 +13,7 @@ class Ability
       can :read, Task, :project => { :owner => user }
       can :update, Task, :project => {:owner => user }
       can :update_status, Task, :project => {:owner => user }
-
+      can :startwork, Task, :project => {:owner => user}
     end
   end
 end

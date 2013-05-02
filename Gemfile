@@ -29,6 +29,7 @@ gem "bootstrap-datetimepicker-rails", "~> 0.0.10.1"
 gem 'devise'
 gem 'cancan'
 
+gem 'time_difference' 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

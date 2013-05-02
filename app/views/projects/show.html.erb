@@ -19,13 +19,13 @@
       </UL>
       <div class="tab-content">
         <div class="tab-pane active" id="tasks_in_progress">
-          <%= render :partial => 'tasks_in_progress' %>
+          <%= render :partial => 'tasks', :locals => {:task_status => 'in_progress'} %>
         </div>
         <div class="tab-pane" id="tasks_in_new">
-          <%= render :partial => 'tasks_in_new' %>
+          <%= render :partial => 'tasks', :locals => { :task_status=>'new'} %>
         </div>
         <div class="tab-pane" id="tasks_in_done">
-          <%= render :partial => 'tasks_in_done'%>
+          <%= render :partial => 'tasks', :locals => {:task_status => 'done' }%>
         </div>
       </div>
     </div>

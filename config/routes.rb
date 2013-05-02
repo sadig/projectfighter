@@ -9,8 +9,14 @@ ProjectFighter::Application.routes.draw do
   end
   resources :projects do
     resources :tasks do
+      resources :time_records do
+        member do
+          put :stoptimerecord
+        end
+      end
       member do
         put :update_status
+        post :startwork
       end
     end
   end

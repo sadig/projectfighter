@@ -1,0 +1,57 @@
+          <div class="accordion" id="accordion_tasks_new">
+            <%- for task in @project.tasks.where(:status=>task_status).all %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_tasks_new" href="#task_<%= task.id %>">
+                    <%= task.title %>
+                  </a>
+                </div>
+                <div class="accordion-body collapse<%- if session.has_key?('action') and session[:action]=='task_updated' and session[session[:action]]==task.id %>in<%-end%>" id="task_<%= task.id %>">
+                  <div class="accordion-inner project-task" data-url="<%= url_for [@project,task] %>">
+                    <div class="row">
+                      <div class="span5"><%= task.description %></div>
+                      <div class="span1"><%= select_tag(:status, options_for_select([['New','new'],['In Progress','in_progress'],['Done','done']],task.status),{:class=>'task-status-changer','data-url'=>url_for(update_status_project_task_path(@project,task))}) %></div>
+                    </div>
+                    <div class="row">
+                      <div class="span5">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#time_records_<%= task.id %>" data-toggle="tab">Time Records</a></li>
+                          <li><a href="#time_infos_<%= task.id %>" data-toggle="tab">Time Summary</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="time_records_<%= task.id %>">
+                            <table class="table table-condensed table-bordered">
+                              <thead>
+                                <tr><th>Work Started At</th><th>Work Ended At</th></tr>
+                              </thead>
+                              <tbody>
+                                <%- for timerecord in task.time_records.order(:created_at).reverse_order.limit(5) %>
+                                  <tr>
+                                    <td><%= timerecord.created_at %></td>
+                                    <td><%- if timerecord.created_at != timerecord.updated_at %><%=timerecord.updated_at %><%- end %></td>
+                                    <%- if timerecord.created_at == timerecord.updated_at %><td><button data-url="<%= url_for(stoptimerecord_project_task_time_record_path(@project,task,timerecord))%>" class="btn btn-small stop-time-record">Stop</button></td><%- end %>
+                                  </tr>
+                                <%- end %>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="tab-pane" id="time_infos_<%= task.id %>">
+                            hhh
+                            <div class="row">
+                              <div class="span2">Total work time:</div><div class="span2"><%= task.total_work_time? %></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="span3">
+                        <%- if task.all_stopped? and task.status != 'done'%>
+                          <button class="btn btn-small start_time_record" data-url="<%= url_for(startwork_project_task_path(@project,task))%>">Start Work</button>
+                        <%- end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%- end %>
+          </div>
+ 
