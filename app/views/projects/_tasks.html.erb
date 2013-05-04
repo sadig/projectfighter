@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span9">
-    <div class="accordion" id="accordion_tasks_new">
-      <%- for task in @project.tasks.where(:status=>task_status).all %>
+    <div class="accordion" id="accordion_tasks_new" style="height:300px; overflow:auto;">
+      <%- for task in @project.tasks.where(:status=>task_status).all do %>
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_tasks_new" href="#task_<%= task.id %>"><%= task.title %></a>
@@ -58,15 +58,20 @@
                                 <tr>
                                   <td><%= timerecord.created_at %></td>
                                   <td>
-                                    <%- if timerecord.created_at != timerecord.updated_at %>
+                                    <%- if not timerecord.started %>
                                       <%=timerecord.updated_at %>
                                     <%- end %>
-                                  <%- if timerecord.created_at == timerecord.updated_at %>
+                                    <%- if timerecord.started %>
                                     <button data-url="<%= url_for(stoptimerecord_project_task_time_record_path(@project,task,timerecord))%>" class="btn btn-small stop-time-record">Stop</button>
                                   <%- end %>
                                   </td>
                                   <td>
-                                    <a href="#modal_comment_<%= task.id %>_<%= timerecord.id %>" data-toggle="modal">Click here to add a comment</a>
+                                    <%- if timerecord.comment.empty? %>
+                                      <a href="#modal_comment_<%= task.id %>_<%= timerecord.id %>" data-toggle="modal">Click here to add a comment</a>
+                                    <%- else %>
+                                      <a href="#modal_comment_<%= task.id %>_<%= timerecord.id %>" data-toggle="modal" title="Click here to change comment"><%= timerecord.comment %></a>
+                                    <%- end %>
+
                                     <div id="modal_comment_<%= task.id %>_<%= timerecord.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="comment_for_<%=task.id%>_<%=timerecord.id%>" area-hidden="true">
                                       <div class="modal-header">
                                         <h3 id="comment_for_<%= task.id%>_<%=timerecord.id%>">Comment</h3>

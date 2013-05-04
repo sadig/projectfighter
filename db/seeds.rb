@@ -14,8 +14,8 @@ if User.count <= 0 and Role.count <= 0
   user2=User.create({name: 'SAdig',email: 'sh@sourcecode.de', password: 'test1234', :roles => [user]})
   user3=User.create({name: 'Test User',email: 'test@test.tld', password: 'test1234', :roles => [user]})
   project=Project.create({slug: 'test_project', title: 'First test Project for testuser', description:'testing foo', owner: user3})
-  task1=Task.create({title:'Task 1',description:'This is a test task for test project', :project=>project})
-  task2=Task.create({title:'Task 2',description:'This is a test task for test project', :project=>project})
-  task3=Task.create({title:'Task 3',description:'This is a test task for test project', :status=>'new', :project=>project})
+  for i in 1..100
+    task1=Task.create({title:"Task #{i}" ,description:'This is a test task for test project', :project=>project})
+  end
 
 end

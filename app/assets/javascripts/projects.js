@@ -68,6 +68,7 @@ $(document).ready(function() {
         if (data===undefined) {
           window.location.href=window.location.href;
         }
+      });
     });
   });
 });

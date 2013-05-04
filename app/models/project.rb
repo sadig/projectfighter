@@ -3,4 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :owner, :class_name=>'User'
   has_many :tasks
 
+  def no_of_tasks?(status)
+    self.tasks.where(:status => status).count
+  end
 end

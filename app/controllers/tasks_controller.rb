@@ -10,9 +10,11 @@ class TasksController < ApplicationController
     @task=@project.tasks.find(params[:id])
     if @task.time_records.where(:first => true).count > 0
       t=TimeRecord.create(:task=>@task, :started=>true, :first=>false)
-      @task.status='in_progress'
-      @task.save
+    else
+      t=TimeRecord.create(:task=>@task, :started=>true, :first=>true)
     end
+    @task.status='in_progress'
+    @task.save
     respond_to do |format|
       session[:action]='task_updated'
       session[:task_updated]=@task.id

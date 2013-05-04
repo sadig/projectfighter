@@ -4,22 +4,39 @@
 <%- content_for :jscript do %>
   <%= javascript_include_tag controller_path %>
 <%- end %>
+<%- if @project.owner == current_user %>
+<%- content_for :sidebar do %>
+  <UL class="nav nav-list">
+    <LI class="nav-header">Tasks</LI>
+    <LI><a href="#">Create new task</a></li>
+  </ul>
+<%- end %>
+<%- end %>
 <div class="row">
   <div class="span9">
     <div class="page-header">
       <h2><%= @project.title %></h2><div class="pull-right">Back</div>
       <small>Created At:&nbsp;<span class="date_convert_to_local"><%= @project.created_at.to_datetime.iso8601%></span></small>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span9">
+    <a href="#">Create new task</a>
+  </div>
+</div>
+<div class="row">
+  <div class="span9">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tasks_in_progress" data-toggle="tab">In Progress</a></li>
-      <LI><a href="#tasks_in_new" data-toggle="tab">New</a></LI>
+    <li <%- if @project.no_of_tasks?('in_progress') >0 %>class="active"<%- end %>><a href="#tasks_in_progress" data-toggle="tab">In Progress</a></li>
+    <LI<%- if @project.no_of_tasks?('in_progress') <=0 %> class="active"<%- end%>><a href="#tasks_in_new" data-toggle="tab">New</a></LI>
       <LI><a href="#tasks_in_done" data-toggle="tab">Done</a></LI>
     </UL>
     <div class="tab-content">
-      <div class="tab-pane active" id="tasks_in_progress">
+      <div class="tab-pane<%- if @project.no_of_tasks?('in_progress') > 0 %> active<%-end%>" id="tasks_in_progress">
         <%= render :partial => 'tasks', :locals => {:task_status => 'in_progress'} %>
       </div>
-      <div class="tab-pane" id="tasks_in_new">
+      <div class="tab-pane<%- if @project.no_of_tasks?('in_progress') <= 0%> active<%-end%>" id="tasks_in_new">
         <%= render :partial => 'tasks', :locals => { :task_status=>'new'} %>
       </div>
       <div class="tab-pane" id="tasks_in_done">
