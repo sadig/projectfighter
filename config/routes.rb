@@ -12,6 +12,7 @@ ProjectFighter::Application.routes.draw do
       resources :time_records do
         member do
           put :stoptimerecord
+          put :updatecomment
         end
       end
       member do

@@ -1,12 +1,16 @@
-<DL>
-  <%- for project in @projects %>
-    <DT><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_project_path(project) %> <%= link_to project.title, project %></DT>
-    <DD>
-    <%- for task in project.tasks %>
-      <%= link_to task.title, project_task_path(project,task) %><br/>
-    <%- end %>
-    </DD>
-  <%- end %>
-</DL>
-
-
+<div class="row">
+  <div class="span9">
+    <DL>
+      <%- for project in @projects %>
+        <DT><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_project_path(project) %> <%= link_to project.title, project %></DT>
+        <DD>
+          <ul>
+          <%- for task in project.tasks %>
+              <li><%= link_to task.title, project_task_path(project,task) %></LI>
+            <%- end %>
+          </ul>
+        </DD>
+      <%- end %>
+    </DL>
+  </div>
+</div>

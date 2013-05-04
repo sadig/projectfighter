@@ -4,20 +4,18 @@
 <%- content_for :jscript do %>
   <%= javascript_include_tag controller_path %>
 <%- end %>
-<div class="container">
-  <div class="row">
-    <div class="span9">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#my_projects" data-toggle="tab">My Projects</a></LI>
-        <li><a href="#work_projects" data-toggle="tab">Projects I am on</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="my_projects">
-          <%= render :partial=>'projects/includes/my_projects' %>
-        </div>
-        <div class="tab-pane" id="work_projects">
-          foo
-        </div>
+<div class="row">
+  <div class="span9">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#my_projects" data-toggle="tab">My Projects</a></LI>
+      <li><a href="#work_projects" data-toggle="tab">Projects I am on</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="my_projects">
+        <%= render :partial=>'projects/includes/my_projects' %>
+      </div>
+      <div class="tab-pane" id="work_projects">
+        foo
       </div>
     </div>
   </div>

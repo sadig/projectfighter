@@ -5,6 +5,7 @@ class CreateTimeRecords < ActiveRecord::Migration
       t.boolean :started, :default=>false
       t.boolean :first, :default=>false
       t.boolean :last, :default=>false
+      t.string :comment, :default=>''
       t.timestamps
     end
   end

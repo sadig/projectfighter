@@ -7,9 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require global
 $(document).ready(function() {
-  $('.date_convert_to_local').each(function() {
-    var localdate=new Date(Date.parse($(this).text()));
-    $(this).text(localdate.toLocaleDateString()+' '+localdate.toLocaleTimeString());
-  });
+  convert_date_to_locale('.date_convert_to_local');
 });

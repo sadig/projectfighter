@@ -4,29 +4,26 @@
 <%- content_for :jscript do %>
   <%= javascript_include_tag controller_path %>
 <%- end %>
-<div class="container">
-  <div class="row">
-    <div class="page-header span9">
+<div class="row">
+  <div class="span9">
+    <div class="page-header">
       <h2><%= @project.title %></h2><div class="pull-right">Back</div>
       <small>Created At:&nbsp;<span class="date_convert_to_local"><%= @project.created_at.to_datetime.iso8601%></span></small>
-
     </div>
-    <div class="span9">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tasks_in_progress" data-toggle="tab">In Progress</a></li>
-        <LI><a href="#tasks_in_new" data-toggle="tab">New</a></LI>
-        <LI><a href="#tasks_in_done" data-toggle="tab">Done</a></LI>
-      </UL>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tasks_in_progress">
-          <%= render :partial => 'tasks', :locals => {:task_status => 'in_progress'} %>
-        </div>
-        <div class="tab-pane" id="tasks_in_new">
-          <%= render :partial => 'tasks', :locals => { :task_status=>'new'} %>
-        </div>
-        <div class="tab-pane" id="tasks_in_done">
-          <%= render :partial => 'tasks', :locals => {:task_status => 'done' }%>
-        </div>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tasks_in_progress" data-toggle="tab">In Progress</a></li>
+      <LI><a href="#tasks_in_new" data-toggle="tab">New</a></LI>
+      <LI><a href="#tasks_in_done" data-toggle="tab">Done</a></LI>
+    </UL>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tasks_in_progress">
+        <%= render :partial => 'tasks', :locals => {:task_status => 'in_progress'} %>
+      </div>
+      <div class="tab-pane" id="tasks_in_new">
+        <%= render :partial => 'tasks', :locals => { :task_status=>'new'} %>
+      </div>
+      <div class="tab-pane" id="tasks_in_done">
+        <%= render :partial => 'tasks', :locals => {:task_status => 'done' }%>
       </div>
     </div>
   </div>

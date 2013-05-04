@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130502110522) do
     t.boolean  "started",                 :default => false
     t.boolean  "first",                   :default => false
     t.boolean  "last",                    :default => false
+    t.string   "comment",                 :default => ""
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
   end
